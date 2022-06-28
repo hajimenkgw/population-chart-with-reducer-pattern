@@ -46,10 +46,6 @@ const CheckBox: FC<{ prefName: string; prefCode: number }> = ({
 export const Prefectures = () => {
   const { result, error } = useResas<Prefecture[]>("api/v1/prefectures");
 
-  useEffect(() => {
-    getPopulationData(1, "hoge");
-  });
-
   if (error) return <>Something went wrong...</>;
   if (!result) return <>Loading ...</>;
 
