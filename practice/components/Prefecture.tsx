@@ -1,5 +1,5 @@
-import { FC, useContext, useState, useCallback, useEffect } from "react";
-import { SeriesDispatchContext } from "../context";
+import { FC, useState, useCallback, useEffect } from "react";
+import { useSeriesDispatch } from "../context";
 import { Prefecture } from "../interface";
 import { getPopulationData } from "../utils/getPopulationData";
 import { useResas } from "../utils/useResas";
@@ -10,7 +10,7 @@ const CheckBox: FC<{ prefName: string; prefCode: number }> = ({
   prefName,
   prefCode,
 }) => {
-  const dispatch = useContext(SeriesDispatchContext);
+  const dispatch = useSeriesDispatch();
   const [isOn, setIsOn] = useState(false);
 
   const toggle = useCallback(() => {
@@ -32,7 +32,12 @@ const CheckBox: FC<{ prefName: string; prefCode: number }> = ({
 
   return (
     <label htmlFor={prefName} key={prefName}>
-      <input type="checkbox" id={prefName} onChange={hanleChange} />
+      <input
+        type="checkbox"
+        id={prefName}
+        onChange={hanleChange}
+        checked={isOn}
+      />
       {prefName}
     </label>
   );

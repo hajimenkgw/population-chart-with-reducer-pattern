@@ -1,16 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useReducer } from "react";
 import { Prefectures } from "../components/Prefecture";
 import { Chart } from "../components/Chart";
-import { SeriesContext, SeriesDispatchContext } from "../context";
 
 import styles from "../styles/Home.module.css";
-import { seriesReducer } from "../utils/reducer";
+import { SeriesProvider } from "../context/provider";
 
 const Home: NextPage = () => {
-  const [state, dispach] = useReducer(seriesReducer, []);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -19,14 +15,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SeriesContext.Provider value={state}>
-        <SeriesDispatchContext.Provider value={dispach}>
-          <main className={styles.main}>
-            <Prefectures />
-            <Chart />
-          </main>
-        </SeriesDispatchContext.Provider>
-      </SeriesContext.Provider>
+      <SeriesProvider>
+        <main className={styles.main}>
+          <Prefectures />
+          <Chart />
+        </main>
+      </SeriesProvider>
     </div>
   );
 };

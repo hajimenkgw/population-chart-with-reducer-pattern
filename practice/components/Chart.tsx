@@ -1,7 +1,6 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { useContext } from "react";
-import { SeriesContext } from "../context";
+import { useSeries } from "../context";
 
 // グラフのX軸
 const CATEGORIES = [
@@ -26,7 +25,7 @@ const CATEGORIES = [
 ];
 
 export const Chart = () => {
-  const series = useContext(SeriesContext);
+  const series = useSeries();
 
   const options: Highcharts.Options = {
     series: series,
